@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
+
+WORKDIR /app
+COPY . ./
+
+RUN dotnet restore "./WebApplication.csproj"
+
+RUN dotnet build "./WebApplication.csproj" \
+    -c Release \
+    --no-restore
+
+RUN dotnet publish "./WebApplication.csproj" \
+    -c Release \
+    -o /app/publish \
+    --no-restore \
+    --no-build
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy
+EXPOSE 8080
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "WebApplication.dll"]

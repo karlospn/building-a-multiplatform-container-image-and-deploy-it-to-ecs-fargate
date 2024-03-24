@@ -1,0 +1,27 @@
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
+WORKDIR /app
+
+ARG TARGETARCH
+
+COPY . ./
+
+RUN dotnet restore "./WebApplication.csproj" \
+    --arch $TARGETARCH
+
+RUN dotnet build "./WebApplication.csproj" \
+    -c Release \
+    --no-restore \
+    --arch $TARGETARCH
+
+RUN dotnet publish "./WebApplication.csproj" \
+    -c Release \
+    -o /app/publish \
+    --no-restore \
+    --no-build \
+    --arch $TARGETARCH
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy
+EXPOSE 8080
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "WebApplication.dll"]
