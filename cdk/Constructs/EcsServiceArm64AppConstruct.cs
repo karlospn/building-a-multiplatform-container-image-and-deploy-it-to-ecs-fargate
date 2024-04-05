@@ -68,10 +68,10 @@ namespace Cdk.Constructs
         {
 
             var sg = new SecurityGroup(this,
-                "sg-alb-to-ecs-service-arm64",
+                "scg-alb-to-ecs-service-arm64",
                 new SecurityGroupProps
                 {
-                    SecurityGroupName = "sg-alb-to-ecs-arm64-service",
+                    SecurityGroupName = "scg-alb-to-ecs-arm64-service",
                     Description = "Allow traffic from ALB to app",
                     AllowAllOutbound = true,
                     Vpc = vpc

@@ -14,13 +14,13 @@ namespace Cdk.Constructs
             : base(scope, id)
         {
             var securityGroup = new SecurityGroup(this,
-                "sg-pub-alb",
+                "scg-pub-alb",
                 new SecurityGroupProps()
                 {
                     Vpc = vpc,
                     AllowAllOutbound = true,
                     Description = "Security group for the public ALB",
-                    SecurityGroupName = "sg-pub-alb"
+                    SecurityGroupName = "scg-pub-alb"
                 });
 
             securityGroup.AddIngressRule(Peer.AnyIpv4(),
