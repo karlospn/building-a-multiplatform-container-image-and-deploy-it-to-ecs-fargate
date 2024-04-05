@@ -24,7 +24,7 @@ namespace Cdk.Constructs
 
         private FargateTaskDefinition CreateTaskDefinition()
         {
-            var repository = Repository.FromRepositoryName(this, "ecr-arm64-app", "multi-platform-img");
+            var repository = Repository.FromRepositoryName(this, "ecr-arm64-app", "multi-platform-imgs");
 
             var task = new FargateTaskDefinition(this,
                 $"task-definition-ecs-amd64",
