@@ -33,9 +33,9 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}  
         ECR_REPOSITORY: multi-platform-imgs
       run: |  
-        docker build --platform=linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:amd64 src/Dockerfile.Multiplatform src/
+        docker build --platform=linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:amd64 -f src/Dockerfile.Multiplatform src/
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:amd64  
-        docker build --platform=linux/arm64 -t $ECR_REGISTRY/$ECR_REPOSITORY:amd64 src/Dockerfile.Multiplatform src/
+        docker build --platform=linux/arm64 -t $ECR_REGISTRY/$ECR_REPOSITORY:arm64 -f src/Dockerfile.Multiplatform src/
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:arm64
         docker manifest create $ECR_REGISTRY/$ECR_REPOSITORY:latest $ECR_REGISTRY/$ECR_REPOSITORY:amd64 $ECR_REGISTRY/$ECR_REPOSITORY:arm64
         docker manifest push $ECR_REGISTRY/$ECR_REPOSITORY:latest
