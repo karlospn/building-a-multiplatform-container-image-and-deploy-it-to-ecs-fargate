@@ -1,12 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
 
 var summaries = new[]
 {
@@ -25,6 +19,8 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 });
+
+app.MapGet("/health", () => "Ok");
 
 app.Run();
 
