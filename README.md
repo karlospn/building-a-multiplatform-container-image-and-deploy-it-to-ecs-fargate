@@ -90,7 +90,7 @@ A GitHub Action is located in the ``.github`` folder, which selects the .NET API
 - Using the docker manifest create command, it creates a new manifest for this image. The manifest uses the default latest tag.
 - Finally, it pushes the manifest to the repository.
 
-<add-img>
+![ecr-result](https://raw.githubusercontent.com/karlospn/building-a-multiplatform-container-image-and-deploy-it-to-ecs-fargate/main/docs/ecr.png)
 
 # **Multi-platform images on AWS ECS Fargate**
 
@@ -184,4 +184,4 @@ As you can see, we're utilizing the manifest index tag in both Task Definitions.
 
 After deploying the CDK stack, if we test both Fargate services, we will find that they are both functioning correctly.
 
-<add-img>
+![curl-result](https://raw.githubusercontent.com/karlospn/building-a-multiplatform-container-image-and-deploy-it-to-ecs-fargate/main/docs/curl.png)
